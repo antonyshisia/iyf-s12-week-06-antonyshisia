@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 6 Daily Challenges</title>
+  <style>
+  body {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+  }
+
+  section {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+
+  input,
+  button {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  button {
+    cursor: pointer;
+  }
+</style>
+  <script src="daily-challenges.js" defer></script>
+</head>
+<body>
+  <h1>Week 6 Daily Challenges</h1>
+
+  <section>
+    <h2>Day 1: Delayed Promise</h2>
+    <button id="run-delay" type="button">Run delay</button>
+    <p id="delay-output" aria-live="polite"></p>
+  </section>
+
+  <section>
+    <h2>Day 2: Promise Chain</h2>
+    <button id="run-chain" type="button">Run promise chain</button>
+    <p id="chain-output" aria-live="polite"></p>
+  </section>
+
+  <section>
+    <h2>Day 3: Error Handling</h2>
+    <label for="user-id">User ID (try 1 or 999)</label>
+    <input id="user-id" type="number" min="1" value="1">
+    <button id="fetch-user" type="button">Fetch user</button>
+    <pre id="user-output" aria-live="polite"></pre>
+  </section>
+
+  <section>
+    <h2>Day 4: Rewrite with Async/Await</h2>
+    <button id="run-async-rewrite" type="button">Load user with async/await</button>
+    <p id="async-output" aria-live="polite"></p>
+  </section>
+
+  <section>
+    <h2>Day 5: Parallel Fetches</h2>
+    <button id="run-parallel" type="button">Fetch three results</button>
+    <div id="parallel-output" aria-live="polite"></div>
+  </section>
+</body>
+</html>
