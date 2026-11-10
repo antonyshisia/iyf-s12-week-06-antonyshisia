@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create a Post</title>
+  <style>
+    body {
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      font-family: Arial, sans-serif;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+
+    input, textarea, button {
+      width: 100%;
+      margin-top: 0.35rem;
+      padding: 0.7rem;
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 120px;
+    }
+
+    button {
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+
+    #status {
+      margin-top: 1rem;
+    }
+
+    .post-result {
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+  <script src="posts.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Create a Post</h1>
+
+    <form id="post-form">
+      <label for="title">Post title</label>
+      <input id="title" name="title" required>
+
+      <label for="post-body">Post text</label>
+      <textarea id="post-body" name="body" required></textarea>
+
+      <label for="user-id">User ID</label>
+      <input id="user-id" name="userId" type="number" min="1" value="1" required>
+
+      <button id="submit-button" type="submit">Create post</button>
+    </form>
+
+    <p id="status" role="status" aria-live="polite"></p>
+    <section id="result" aria-live="polite"></section>
+  </main>
+</body>
+</html>
