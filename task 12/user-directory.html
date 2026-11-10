@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Directory</title>
+  <style>
+    body {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      font-family: Arial, sans-serif;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #users-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .user-card {
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    #error {
+      color: darkred;
+    }
+  </style>
+  <script src="user-directory.js" defer></script>
+</head>
+<body>
+  <main id="app">
+    <h1>User Directory</h1>
+
+    <p id="loading" role="status">Loading users...</p>
+    <p id="error" class="hidden" role="alert"></p>
+    <div id="users-container"></div>
+  </main>
+</body>
+</html>
