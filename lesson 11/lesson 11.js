@@ -229,3 +229,91 @@ Promise.all([
   .catch(error => {
     console.error("Could not load all users:", error);
   });
+
+  // Task 11.4 — Exercise 1
+
+function getDataWithPromises() {
+  return getUserData(1)
+    .then(user => getUserPosts(user.id))
+    .then(posts => getPostComments(posts[0].id))
+    .then(comments => comments);
+}
+
+async function getDataWithAsync() {
+  const user = await getUserData(1);
+  const posts = await getUserPosts(user.id);
+  const comments = await getPostComments(posts[0].id);
+  return comments;
+}
+
+// Use it with .then()
+getDataWithAsync()
+  .then(comments => console.log("Comments:", comments));
+
+// Or use await inside another async function
+async function main() {
+  const comments = await getDataWithAsync();
+  console.log("Comments from main:", comments);
+}
+
+main();
+
+// Task 11.4 — Exercise 2
+
+async function fetchUserData(userId) {
+  try {
+    const user = await getUserData(userId);
+    const posts = await getUserPosts(user.id);
+
+    return { user, posts };
+  } catch (error) {
+    console.error("Failed to fetch:", error);
+    throw error;
+  }
+}
+
+fetchUserData(1)
+  .then(result => console.log("User and posts:", result))
+  .catch(error => console.log("The call failed:", error));
+
+  // Task 11.4 — Exercise 3
+
+async function getAllUsers() {
+  // Sequential: each lookup starts after the previous one finishes.
+  const user1 = await getUserData(1);
+  const user2 = await getUserData(2);
+  const user3 = await getUserData(3);
+  console.log("Sequential users:", [user1, user2, user3]);
+
+  // Parallel: start all three lookups together.
+  const [u1, u2, u3] = await Promise.all([
+    getUserData(1),
+    getUserData(2),
+    getUserData(3)
+  ]);
+
+  return [u1, u2, u3];
+}
+
+getAllUsers().then(users => console.log("Parallel users:", users));
+
+// Task 11.4 — Build: callback example rewritten with async/await
+
+async function getUserDataWithComments(userId) {
+  const user = await getUserData(userId);
+  const posts = await getUserPosts(user.id);
+  const comments = await getPostComments(posts[0].id);
+
+  return { user, posts, comments };
+}
+
+getUserDataWithComments(1)
+  .then(result => {
+    console.log("User:", result.user);
+    console.log("Posts:", result.posts);
+    console.log("Comments:", result.comments);
+  })
+  .catch(error => {
+    console.error("Could not load the user data:", error);
+  });
+  
