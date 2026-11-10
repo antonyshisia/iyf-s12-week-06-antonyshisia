@@ -31,13 +31,39 @@
     #error {
       color: darkred;
     }
+
+.controls {
+  display: grid;
+  gap: 0.4rem;
+  margin: 1rem 0;
+}
+
+.controls input,
+.controls select {
+  padding: 0.6rem;
+  font: inherit;
+}
   </style>
   <script src="user-directory.js" defer></script>
 </head>
 <body>
   <main id="app">
     <h1>User Directory</h1>
+    <div class="controls">
+  <label for="search">Search by name or email</label>
+  <input id="search" type="search" placeholder="Type a name or email">
 
+  <label for="sort">Sort by name</label>
+  <select id="sort">
+    <option value="az">A to Z</option>
+    <option value="za">Z to A</option>
+  </select>
+
+  <label for="city-filter">Filter by city</label>
+  <select id="city-filter">
+    <option value="">All cities</option>
+  </select>
+</div>
     <p id="loading" role="status">Loading users...</p>
     <p id="error" class="hidden" role="alert"></p>
     <div id="users-container"></div>
