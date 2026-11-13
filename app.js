@@ -42,23 +42,25 @@ const pressure = document.getElementById("pressure");
 async function fetchWeather(city) {
     const url = `${BASE_URL}?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`;
 
-    const response = await fetch(url);
+    let response;
+    try {
+        response = await fetch(url);
+    } catch {
+        throw new Error("Network error: check your connection");
+    }
 
     if (!response.ok) {
         if (response.status === 404) {
             throw new Error("City not found");
-        } else if (response.status === 401) {
-            throw new Error("API key not valid yet. Please check your API key.");
-        } else {
-            throw new Error("Failed to fetch weather data");
         }
+        if (response.status === 401) {
+            throw new Error("API key not valid yet. Please check your API key.");
+        }
+        throw new Error("Failed to fetch weather data");
     }
-    const data = await response.json();
 
-    return data;
-
+    return response.json();
 }
-
 
 // ============================================
 // STEP 2 — getWeather(city): the three states
